@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // import { Line } from 'react-chartjs-2'; // Removed if not used
 import {
@@ -31,7 +31,6 @@ function Sales() {
   const [cart, setCart] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [total] = useState(0);
-  const [sales, setSales] = useState([]);
 
   useEffect(() => {
     fetchSales();
@@ -54,15 +53,16 @@ function Sales() {
     try {
       const response = await fetch('/data/sales.json');
       const data = await response.json();
-      setSales(data);
+      console.log('Sales data loaded:', data);
+      // Not using sales data for now
     } catch (error) {
       console.error('Error fetching sales:', error);
     }
   };
 
-  const calculateTotal = () => {
+  const calculateTotal = useCallback(() => {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  };
+  }, [cart]);
 
   const addToCart = (product) => {
     const existingItem = cart.find(item => item.id === product.id);
