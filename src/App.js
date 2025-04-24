@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Auth/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import Sidebar from './components/Navigation/Sidebar';

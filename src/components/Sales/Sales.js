@@ -23,10 +23,10 @@ ChartJS.register(
 );
 
 function Sales() {
-  const [sales, setSales] = useState([]);
 
-  const [dateRange] = useState({ start: '', end: '' });
-  const [paymentMethod] = useState('all');
+
+
+
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
