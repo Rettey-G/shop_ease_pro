@@ -30,8 +30,8 @@ function Sales() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-32:   const [total] = useState(0);
-33:   const [sales, setSales] = useState([]);
+  const [total] = useState(0);
+  const [sales, setSales] = useState([]);
 
   useEffect(() => {
     fetchSales();
