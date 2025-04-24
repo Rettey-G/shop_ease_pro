@@ -1,0 +1,23 @@
+{
+  "sales": [
+    {
+      "id": "SALE001",
+      "date": "2024-04-24T10:30:00Z",
+      "items": [
+        {
+          "sku": "PROD001",
+          "name": "Sample Product 1",
+          "quantity": 2,
+          "price": 19.99,
+          "total": 39.98
+        }
+      ],
+      "subtotal": 39.98,
+      "tax": 3.20,
+      "total": 43.18,
+      "paymentMethod": "cash",
+      "cashier": "admin",
+      "status": "completed"
+    }
+  ]
+} 

@@ -1,0 +1,17 @@
+{
+  "shop": {
+    "name": "ShopEase Pro",
+    "address": "123 Main Street",
+    "phone": "+1 234 567 8900",
+    "email": "info@shopease.com",
+    "taxRate": 8.0,
+    "currency": "USD",
+    "receiptTemplate": {
+      "header": "Thank you for shopping with us!",
+      "footer": "Please visit again soon!",
+      "showTax": true,
+      "showDate": true,
+      "showCashier": true
+    }
+  }
+} 

@@ -1,0 +1,9 @@
+# Ignore sensitive and environment files
+/public/data/users.json
+/public/data/products.json
+.env
+node_modules/
+build/
+dist/
+.DS_Store
+*.log
