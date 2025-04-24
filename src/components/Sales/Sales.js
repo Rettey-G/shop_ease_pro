@@ -37,11 +37,6 @@ function Sales() {
   }, []);
 
   useEffect(() => {
-    filterSales();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sales, dateRange, paymentMethod]);
-
-  useEffect(() => {
     // In a real app, fetch products from API
     setProducts([
       { id: 1, name: 'Product 1', price: 10.99, stock: 50 },
@@ -62,31 +57,6 @@ function Sales() {
     } catch (error) {
       console.error('Error fetching sales:', error);
     }
-  };
-
-  const filterSales = () => {
-    let filtered = [...sales];
-
-    // Filter by date range
-    if (dateRange.start) {
-      filtered = filtered.filter(sale => 
-        new Date(sale.date) >= new Date(dateRange.start)
-      );
-    }
-    if (dateRange.end) {
-      filtered = filtered.filter(sale => 
-        new Date(sale.date) <= new Date(dateRange.end)
-      );
-    }
-
-    // Filter by payment method
-    if (paymentMethod !== 'all') {
-      filtered = filtered.filter(sale => 
-        sale.paymentMethod === paymentMethod
-      );
-    }
-
-    setFilteredSales(filtered);
   };
 
   const calculateTotal = (sales) => {
