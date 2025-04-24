@@ -23,7 +23,7 @@ function Users() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/users');
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`);
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -54,7 +54,7 @@ function Users() {
         if (formData.password) {
           updatedUser.password = formData.password;
         }
-        const response = await fetch(`http://localhost:5000/api/users/${editingUser.id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/${editingUser.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedUser)
@@ -72,7 +72,7 @@ function Users() {
           role: formData.role,
           active: formData.active
         };
-        const response = await fetch('http://localhost:5000/api/users', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newUser)
@@ -113,7 +113,7 @@ function Users() {
   const handleDelete = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}`, {
           method: 'DELETE'
         });
         if (!response.ok) {

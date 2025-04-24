@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
   const login = async (username, password) => {
     try {
       // Fetch users from backend API
-      const response = await fetch('http://localhost:5000/api/users');
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`);
       const users = await response.json();
       const user = users.find(u => u.name === username);
 

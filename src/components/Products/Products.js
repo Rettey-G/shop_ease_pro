@@ -34,7 +34,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/products');
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/products`);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -58,7 +58,7 @@ function Products() {
       }
       if (editingProduct) {
         // Edit product via PUT
-        const response = await fetch(`http://localhost:5000/api/products/${editingProduct.sku}`,
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/products/${editingProduct.sku}`,
           {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -72,7 +72,7 @@ function Products() {
         if (!response.ok) throw new Error('Failed to update product');
       } else {
         // Add product via POST
-        const response = await fetch('http://localhost:5000/api/products', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/products`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -126,7 +126,7 @@ function Products() {
   const handleDelete = async (sku) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${sku}`,
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/products/${sku}`,
         { method: 'DELETE' });
       if (!response.ok) {
         alert('Failed to delete product.');
