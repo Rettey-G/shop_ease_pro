@@ -53,9 +53,9 @@ function Sales() {
   const fetchSales = async () => {
     try {
       const response = await fetch('/data/sales.json');
-54:       const data = await response.json();
-55:       setSales(data);
-56:     } catch (error) {
+      const data = await response.json();
+      setSales(data);
+    } catch (error) {
       console.error('Error fetching sales:', error);
     }
   };
