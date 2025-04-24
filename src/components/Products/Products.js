@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { useAuth } from '../../contexts/AuthContext'; // Removed unused 'user'
+
 
 function Products() {
-  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
   const [showForm, setShowForm] = useState(false);
