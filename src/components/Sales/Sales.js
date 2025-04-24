@@ -30,7 +30,8 @@ function Sales() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [total] = useState(0);
+32:   const [total] = useState(0);
+33:   const [sales, setSales] = useState([]);
 
   useEffect(() => {
     fetchSales();
@@ -52,15 +53,15 @@ function Sales() {
   const fetchSales = async () => {
     try {
       const response = await fetch('/data/sales.json');
-      const data = await response.json();
-      setSales(data.sales);
-    } catch (error) {
+54:       const data = await response.json();
+55:       setSales(data);
+56:     } catch (error) {
       console.error('Error fetching sales:', error);
     }
   };
 
-  const calculateTotal = (sales) => {
-    return sales.reduce((sum, sale) => sum + sale.total, 0);
+  const calculateTotal = () => {
+    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
 
   const addToCart = (product) => {
