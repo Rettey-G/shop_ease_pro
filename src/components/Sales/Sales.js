@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2'; // Removed if not used
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,18 +23,14 @@ ChartJS.register(
 );
 
 function Sales() {
-  const { user } = useAuth();
   const [sales, setSales] = useState([]);
   const [filteredSales, setFilteredSales] = useState([]);
-  const [dateRange, setDateRange] = useState({
-    start: '',
-    end: ''
-  });
-  const [paymentMethod, setPaymentMethod] = useState('all');
+  const [dateRange] = useState({ start: '', end: '' });
+  const [paymentMethod] = useState('all');
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [total, setTotal] = useState(0);
+  const [total] = useState(0);
 
   useEffect(() => {
     fetchSales();
@@ -42,6 +38,7 @@ function Sales() {
 
   useEffect(() => {
     filterSales();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sales, dateRange, paymentMethod]);
 
   useEffect(() => {
@@ -92,25 +89,8 @@ function Sales() {
     setFilteredSales(filtered);
   };
 
-  const salesData = {
-    labels: filteredSales.map(sale => new Date(sale.date).toLocaleDateString()),
-    datasets: [
-      {
-        label: 'Sales Amount',
-        data: filteredSales.map(sale => sale.total),
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-      },
-    ],
-  };
-
   const calculateTotal = (sales) => {
     return sales.reduce((sum, sale) => sum + sale.total, 0);
-  };
-
-  const calculateAverage = (sales) => {
-    if (sales.length === 0) return 0;
-    return calculateTotal(sales) / sales.length;
   };
 
   const addToCart = (product) => {
