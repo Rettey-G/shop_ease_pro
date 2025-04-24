@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 // User management with edit/save for admin dashboard
 
 function Users() {
-  const { user } = useAuth();
+
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [showForm, setShowForm] = useState(false);
