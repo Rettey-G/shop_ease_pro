@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+
 // import { Line } from 'react-chartjs-2'; // Removed if not used
 import {
   Chart as ChartJS,
@@ -24,7 +24,7 @@ ChartJS.register(
 
 function Sales() {
   const [sales, setSales] = useState([]);
-  const [filteredSales, setFilteredSales] = useState([]);
+
   const [dateRange] = useState({ start: '', end: '' });
   const [paymentMethod] = useState('all');
   const [products, setProducts] = useState([]);
