@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
-import { QrReader } from 'react-qr-reader';
+import { QrReader } from '@blackbox-vision/react-qr-reader';
 
 function CashierDashboard() {
   const { user } = useAuth();
