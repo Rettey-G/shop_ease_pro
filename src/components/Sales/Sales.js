@@ -47,6 +47,7 @@ function Sales() {
 
   useEffect(() => {
     calculateTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   const fetchSales = async () => {
