@@ -23,7 +23,7 @@ function Users() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`);
+      const response = await fetch('/data/users.json');
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -43,9 +43,13 @@ function Users() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // For the deployed version, we will simulate user modifications
+      // by just updating the local state, since we can't modify JSON files
+      // on the server directly from the client
       if (editingUser) {
-        // Update existing user via backend
+        // Update existing user in local state
         const updatedUser = {
+          ...editingUser,
           name: formData.name,
           email: formData.email,
           role: formData.role,
@@ -54,36 +58,28 @@ function Users() {
         if (formData.password) {
           updatedUser.password = formData.password;
         }
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/${editingUser.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updatedUser)
-        });
-        if (!response.ok) {
-          const err = await response.json();
-          alert(err.error || 'Failed to update user');
-          return;
-        }
+        
+        // Update the local state with the modified user
+        const updatedUsers = users.map(user => 
+          user.id === editingUser.id ? updatedUser : user
+        );
+        setUsers(updatedUsers);
+        alert('User updated! (Note: In this demo, changes are only stored in memory)');
       } else {
-        // Add new user via backend
+        // Create new user in local state
         const newUser = {
-          name: formData.name,
-          password: formData.password,
-          role: formData.role,
-          active: formData.active
+          ...formData,
+          id: `USER${Date.now().toString().slice(-6)}`, // Generate simple ID
+          createdAt: new Date().toISOString(),
+          lastLogin: null
         };
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newUser)
-        });
-        if (!response.ok) {
-          const err = await response.json();
-          alert(err.error || 'Failed to add user');
-          return;
-        }
+        
+        // Add the new user to local state
+        setUsers([...users, newUser]);
+        alert('User added! (Note: In this demo, changes are only stored in memory)');
       }
-      fetchUsers();
+      
+      // Reset form state
       setShowForm(false);
       setEditingUser(null);
       setFormData({
@@ -94,7 +90,8 @@ function Users() {
         active: true
       });
     } catch (error) {
-      console.error('Error saving user:', error);
+      console.error('Error handling user:', error);
+      alert('Error handling user operations');
     }
   };
 
@@ -110,18 +107,13 @@ function Users() {
     setShowForm(true);
   };
 
-  const handleDelete = async (userId) => {
+  const handleDelete = (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}`, {
-          method: 'DELETE'
-        });
-        if (!response.ok) {
-          const err = await response.json();
-          alert(err.error || 'Failed to delete user');
-          return;
-        }
-        fetchUsers();
+        // Just update the local state by filtering out the deleted user
+        const updatedUsers = users.filter(user => user.id !== userId);
+        setUsers(updatedUsers);
+        alert('User deleted! (Note: In this demo, changes are only stored in memory)');
       } catch (error) {
         alert('Error deleting user.');
         console.error('Error deleting user:', error);

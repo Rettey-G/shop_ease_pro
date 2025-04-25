@@ -19,10 +19,10 @@ export function AuthProvider({ children }) {
 
   const login = async (username, password) => {
     try {
-      // Fetch users from backend API
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users`);
-      const users = await response.json();
-      const user = users.find(u => u.name === username);
+      // Fetch users directly from public JSON file
+      const response = await fetch('/data/users.json');
+      const data = await response.json();
+      const user = data.find(u => u.name === username);
 
       if (user && user.password === password) {
         setUser(user);
