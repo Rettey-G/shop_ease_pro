@@ -19,9 +19,11 @@ export function AuthProvider({ children }) {
 
   const login = async (username, password) => {
     try {
+      console.log('Attempting login for user:', username);
       // Fetch users directly from public JSON file
       const response = await fetch('/data/users.json');
       const data = await response.json();
+      console.log('Fetched users data:', data);
       const user = data.find(u => u.name === username);
 
       if (user && user.password === password) {
