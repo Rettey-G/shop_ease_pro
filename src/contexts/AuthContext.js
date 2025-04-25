@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
       const response = await fetch('/data/users.json');
       const data = await response.json();
       console.log('Fetched users data:', data);
-      const user = data.find(u => u.name === username);
+      const user = data.users.find(u => u.name === username);
 
       if (user && user.password === password) {
         setUser(user);
