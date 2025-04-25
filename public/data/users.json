@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "USER001",
+      "name": "Admin User",
+      "role": "admin",
+      "password": "admin123",
+      "createdAt": "2024-04-24T10:00:00Z",
+      "lastLogin": "2024-04-24T10:00:00Z",
+      "active": true
+    },
+    {
+      "id": "USER002",
+      "name": "Manager User",
+      "role": "manager",
+      "password": "manager123",
+      "createdAt": "2024-04-24T11:00:00Z",
+      "lastLogin": "2024-04-24T11:00:00Z",
+      "active": true
+    },
+    {
+      "id": "USER003",
+      "name": "Employee User",
+      "role": "employee",
+      "password": "employee123",
+      "createdAt": "2024-04-24T12:00:00Z",
+      "lastLogin": "2024-04-24T12:00:00Z",
+      "active": true
+    },
+    {
+      "id": "USER004",
+      "name": "adam",
+      "role": "cashier",
+      "password": "123",
+      "createdAt": "2025-04-24T13:33:08.817Z",
+      "lastLogin": null,
+      "active": true
+    },
+    {
+      "name": "ali",
+      "email": "adam@aaa.com",
+      "password": "$2a$10$Kso581STjMffVPT/cI75c.W13jYKyCQHFJn0yn3XH.O/GDH.1GXHy",
+      "role": "cashier",
+      "active": true,
+      "id": "USER005",
+      "createdAt": "2025-04-24T13:39:37.010Z",
+      "lastLogin": null
+    },
+    {
+      "name": "me",
+      "email": "adam@aa1.com",
+      "password": "123",
+      "role": "admin",
+      "active": true,
+      "id": "USER006",
+      "createdAt": "2025-04-24T13:41:33.840Z",
+      "lastLogin": null
+    }
+  ]
+}
