@@ -35,10 +35,11 @@ function AdminDashboard() {
     // Fetch dashboard statistics
     const fetchStats = async () => {
       try {
+        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
         const [usersRes, productsRes, salesRes] = await Promise.all([
-          fetch('/data/users.json'),
-          fetch('/data/products.json'),
-          fetch('/data/sales.json'),
+          fetch(`${API_BASE_URL}/api/users`),
+          fetch(`${API_BASE_URL}/api/products`),
+          fetch(`${API_BASE_URL}/api/sales`),
         ]);
 
         const users = await usersRes.json();
